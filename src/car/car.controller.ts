@@ -8,27 +8,27 @@ import { ApiBody } from '@nestjs/swagger';
 export class CarController {
     constructor(private carService: CarService) { }
 
-    @Get()
+    @Get('/search/info')
     async getCars() {
         return this.carService.getCars();
     }
 
-    @Post()
+    @Post('/create')
     async postCar(@Body() car: carDto) {
         return this.carService.postCar(car)
     }
 
-    @Get(':id')
+    @Get('/search/:id')
     async getCarById(@Param('id') id: string) {
         return this.carService.getCarById(id);
     }
 
-    @Delete(':id')
+    @Delete('/delete/:id')
     async deleteCar(@Param('id') id: string) {
         return this.carService.deleteCar(id);
     }
 
-    @Put(':id')
+    @Put('/update/:id')
     @ApiBody({ type: carDto })
     async putCarById(@Param('id') id: string, @Body() body: carDto) {
         return this.carService.putCarById(id, body)
